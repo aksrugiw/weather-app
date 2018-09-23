@@ -1,65 +1,36 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <a class="navbar-brand" href="#">Weather App</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-          aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Warsaw</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">London</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">New York</a>
-      </li>
-    </ul>
+  <div>
+    <button *ngIf="currentDay !== 0" (click)="setCurrentDay(0)">Today</button>
   </div>
 </nav>
 
 <main role="main">
-
-  <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container text-center">
       <div class="row">
-        <div class="col-6">
+        <div class="col-md-6">
           <h1 class="display-3">
             {{weatherData?.city.name}}
           </h1>
-          <h2>{{currentWeather.main.temp}} °C</h2>
-          <img src="http://openweathermap.org/img/w/{{currentWeather.weather[0].icon}}.png" alt="">
-          <h4>{{currentWeather.weather[0].description}}</h4>
-          <div class="row">
-            <div class="col-6">Wind: {{currentWeather.wind.speed}} m/s</div>
-            <div class="col-6">Humidity: {{currentWeather.main.humidity}} %</div>
-          </div>
+          <app-current-weather [currentWeather]="currentWeather" [currentDay]="currentDay"></app-current-weather>
         </div>
-        <div class="col-6">
-          <app-weather-details [weatherDetails]="parsedWeatherData[0]"></app-weather-details>
+        <div class="col-md-6">
+          <app-weather-details [weatherDetails]="parsedWeatherData[currentDay]"></app-weather-details>
         </div>
       </div>
-
-
     </div>
   </div>
 
   <div class="container">
-    <!-- Example row of columns -->
     <div class="row">
-      <div class="col-md-3 text-center" *ngFor="let item of parsedWeatherData | slice:1">
-        <app-weather-tile [singleWeatherDay]="item[4]"></app-weather-tile>
+      <div class="col-md-3 text-center" *ngFor="let item of parsedWeatherData | slice:1; index as i">
+        <app-weather-tile [singleWeatherDay]="item[4]" (click)="setCurrentDay(i)"></app-weather-tile>
       </div>
-
     </div>
-
     <hr>
-
-  </div> <!-- /container -->
-
+  </div>
 </main>
 
 <footer class="container">

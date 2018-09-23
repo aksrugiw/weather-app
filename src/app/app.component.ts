@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {OpenweathermapService} from './openweathermap.service';
 
 const DAY_NUMBER_FORECAST = 5;
+const CURRENT_WEATHER_INDEX = 0;
+const MIDDLE_DAY_INDEX = 4;
 
 @Component({
   selector: 'app-root',
@@ -739,8 +741,11 @@ export class AppComponent implements OnInit {
     'city': {'id': 756135, 'name': 'Warsaw', 'coord': {'lat': 52.2319, 'lon': 21.0067}, 'country': 'PL', 'population': 1000000}
   };
 
+  currentDay = 0;
   parsedWeatherData: any[][];
   currentWeather;
+  weatherDetails;
+
 
   constructor(private weatherService: OpenweathermapService) {
   }
@@ -751,10 +756,9 @@ export class AppComponent implements OnInit {
     //   this.weatherData = res;
     // });
     if (this.weatherData.list) {
-      this.currentWeather = this.weatherData.list[4];
       this.parsedWeatherData = this.chunkWeatherData();
+      this.setCurrentWeather();
     }
-    console.log(this.parsedWeatherData);
   }
 
   chunkWeatherData() {
@@ -762,6 +766,15 @@ export class AppComponent implements OnInit {
     return this.weatherData.list.map((item, index) => {
       return index % chunkSize === 0 ? this.weatherData.list.slice(index, index + chunkSize) : null;
     }).filter(e => e);
+  }
+
+  setCurrentDay(index) {
+    this.currentDay = index;
+    this.setCurrentWeather();
+  }
+
+  setCurrentWeather() {
+    this.currentWeather = this.parsedWeatherData[this.currentDay][MIDDLE_DAY_INDEX];
   }
 
   getAverageData(data: any[], dataKey: string) {

@@ -6,12 +6,14 @@ import {OpenweathermapService} from './openweathermap.service';
 import {HttpClientModule} from '@angular/common/http';
 import { WeatherTileComponent } from './weather-tile/weather-tile.component';
 import { WeatherDetailsComponent } from './weather-details/weather-details.component';
+import { CurrentWeatherComponent } from './current-weather/current-weather.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherTileComponent,
-    WeatherDetailsComponent
+    WeatherDetailsComponent,
+    CurrentWeatherComponent
   ],
   imports: [
     BrowserModule,

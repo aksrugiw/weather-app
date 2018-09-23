@@ -1,0 +1,9 @@
+<p *ngIf="currentDay === 0; else dayBlock">Today</p>
+<ng-template #dayBlock>{{(currentWeather.dt* 1000 | date)}}</ng-template>
+<h2>{{currentWeather.main.temp}} °C</h2>
+<img src="http://openweathermap.org/img/w/{{currentWeather.weather[0].icon}}.png" alt="">
+<h4>{{currentWeather.weather[0].description}}</h4>
+<div class="row">
+  <div class="col-6">Wind: {{currentWeather.wind.speed}} m/s</div>
+  <div class="col-6">Humidity: {{currentWeather.main.humidity}} %</div>
+</div>
