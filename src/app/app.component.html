@@ -7,66 +7,20 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Warsaw</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/warsaw">Warsaw</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">London</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/london">London</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">New York</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/new-york">New York</a>
       </li>
     </ul>
   </div>
 </nav>
 <main role="main">
-  <div class="jumbotron">
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="display-3">
-            {{weatherDataFromServer?.city.name}}
-          </h1>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-header">
-              <h4>Average</h4>
-            </div>
-            <div class="card-body">
-              <app-current-weather [currentWeather]="currentWeather" [currentDay]="currentDay"></app-current-weather>
-            </div>
-            <div class="card-footer" *ngIf="currentDay !== 0">
-              <button (click)="setCurrentDay(0)" class="btn btn-info">Show today's weather</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-header">
-              <h4>Hourly</h4>
-            </div>
-            <div class="card-body">
-              <app-weather-details [weatherDetails]="hourlyWeatherPerDay[currentDay]"></app-weather-details>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3 text-center" *ngFor="let item of hourlyWeatherPerDay | slice:1; index as i">
-        <app-weather-tile
-          [singleWeatherDay]="item[averageDayIndex]"
-          [isActive]="currentDay === i + 1"
-          (click)="setCurrentDay(i+1)"
-        ></app-weather-tile>
-      </div>
-    </div>
-    <hr>
-  </div>
+<router-outlet></router-outlet>
 </main>
 
 <footer class="container">
