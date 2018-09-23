@@ -1,0 +1,7 @@
+.card {
+  &:hover,
+  &.active {
+    background: #17a2b8;
+    color: #fff;
+  }
+}

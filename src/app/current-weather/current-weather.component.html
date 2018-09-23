@@ -3,7 +3,21 @@
 <h2>{{currentWeather.main.temp}} °C</h2>
 <img src="http://openweathermap.org/img/w/{{currentWeather.weather[0].icon}}.png" alt="">
 <h4>{{currentWeather.weather[0].description}}</h4>
-<div class="row">
-  <div class="col-6">Wind: {{currentWeather.wind.speed}} m/s</div>
-  <div class="col-6">Humidity: {{currentWeather.main.humidity}} %</div>
-</div>
+<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between">
+    <span>Wind:</span>
+    <span>{{currentWeather.wind.speed}} m/s</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between">
+    <span>Humidity:</span>
+    <span>{{currentWeather.main.humidity}} %</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between">
+    <span>Pressure:</span>
+    <span>{{currentWeather.main.pressure}} hPa</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between">
+    <span>Cloud cover:</span>
+    <span>{{currentWeather.clouds.all}} %</span>
+  </li>
+</ul>

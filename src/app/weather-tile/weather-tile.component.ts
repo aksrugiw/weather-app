@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class WeatherTileComponent implements OnInit {
   @Input() singleWeatherDay;
+  @Input() isActive = false;
 
   constructor() { }
 
