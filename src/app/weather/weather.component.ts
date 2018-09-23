@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {OpenweathermapService} from '../openweathermap.service';
+import {OpenWeatherMapService} from '../open-weather-map.service';
 import {ActivatedRoute} from '@angular/router';
 
 const DAY_NUMBER_FORECAST = 5;
-const AVERAGE_DAY_INDEX = 3;
+const AVERAGE_DAY_INDEX = 0;
 
 @Component({
   selector: 'app-weather',
@@ -11,34 +11,33 @@ const AVERAGE_DAY_INDEX = 3;
   styleUrls: ['./weather.component.scss']
 })
 export class WeatherComponent implements OnInit {
-
-  city = 'New York';
-  weatherDataFromServer;
+  city = '';
+  weatherDataFromServer: any;
 
   currentDay = 0;
   averageDayIndex = 0;
-  hourlyWeatherPerDay: any[];
+  hourlyWeatherPerDay = [];
   currentWeather;
 
-  constructor(private weatherService: OpenweathermapService, private route: ActivatedRoute) {
+  constructor(private weatherService: OpenWeatherMapService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.route.data.subscribe((param) => {
       this.city = param.city;
     });
-    this.weatherService.fakeFetchWeatherForecast(this.city).subscribe((res) => {
+    this.weatherService.fetchWeatherForecast(this.city).subscribe((res) => {
       this.weatherDataFromServer = res;
-      this.hourlyWeatherPerDay = this.chunkWeatherData(this.weatherDataFromServer.cnt / DAY_NUMBER_FORECAST);
+      this.hourlyWeatherPerDay = this.chunkWeatherData(this.weatherDataFromServer['cnt'] / DAY_NUMBER_FORECAST);
       this.setCurrentWeather();
       this.setAverageDayIndex();
     });
   }
 
   chunkWeatherData(chunkSize) {
-    return this.weatherDataFromServer.list.map((item, index) => {
+    return this.weatherDataFromServer['list'].map((item, index) => {
       if (index % chunkSize === 0) {
-        return this.weatherDataFromServer.list.slice(index, index + chunkSize);
+        return this.weatherDataFromServer['list'].slice(index, index + chunkSize);
       } else {
         return null;
       }

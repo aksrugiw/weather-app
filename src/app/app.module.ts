@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import {OpenweathermapService} from './openweathermap.service';
+import {OpenWeatherMapService} from './open-weather-map.service';
 import {HttpClientModule} from '@angular/common/http';
 import { WeatherTileComponent } from './weather-tile/weather-tile.component';
 import { WeatherDetailsComponent } from './weather-details/weather-details.component';
@@ -27,7 +27,6 @@ const appRoutes: Routes = [
     data: { city: 'New York' }
   },
   { path: '',   redirectTo: '/warsaw', pathMatch: 'full' },
-  // { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -43,7 +42,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [OpenweathermapService],
+  providers: [OpenWeatherMapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

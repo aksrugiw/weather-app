@@ -1,23 +1,23 @@
 <p *ngIf="currentDay === 0; else dayBlock">Today</p>
 <ng-template #dayBlock>{{(currentWeather.dt* 1000 | date)}}</ng-template>
-<h2>{{currentWeather.main.temp}} °C</h2>
-<img src="http://openweathermap.org/img/w/{{currentWeather.weather[0].icon}}.png" alt="">
-<h4>{{currentWeather.weather[0].description}}</h4>
+<h2>{{currentWeather?.main.temp}} °C</h2>
+<img [src]="getIconUrl(currentWeather?.weather[0].icon)" alt="">
+<h4>{{currentWeather?.weather[0].description}}</h4>
 <ul class="list-group">
   <li class="list-group-item d-flex justify-content-between">
     <span class="text-info">Wind:</span>
-    <span>{{currentWeather.wind.speed}} m/s</span>
+    <span>{{currentWeather?.wind.speed}} m/s</span>
   </li>
   <li class="list-group-item d-flex justify-content-between">
     <span class="text-info">Humidity:</span>
-    <span>{{currentWeather.main.humidity}} %</span>
+    <span>{{currentWeather?.main.humidity}} %</span>
   </li>
   <li class="list-group-item d-flex justify-content-between">
     <span class="text-info">Pressure:</span>
-    <span>{{currentWeather.main.pressure}} hPa</span>
+    <span>{{currentWeather?.main.pressure}} hPa</span>
   </li>
   <li class="list-group-item d-flex justify-content-between">
     <span class="text-info">Cloud cover:</span>
-    <span>{{currentWeather.clouds.all}} %</span>
+    <span>{{currentWeather?.clouds.all}} %</span>
   </li>
 </ul>

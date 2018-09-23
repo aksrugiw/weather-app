@@ -10,7 +10,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let item of weatherDetails">
-    <td><img src="http://openweathermap.org/img/w/{{item.weather[0].icon}}.png" alt=""></td>
+    <td><img [src]="getIconUrl(item.weather[0].icon)" alt=""></td>
     <td>{{(item.dt * 1000) | date: 'shortTime'}}</td>
     <td>{{item.main.temp}} °C</td>
     <td>{{item.main.humidity}} %</td>

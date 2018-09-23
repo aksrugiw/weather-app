@@ -1,15 +1,17 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {OpenWeatherMapService} from '../open-weather-map.service';
 
 @Component({
   selector: 'app-weather-details',
-  templateUrl: './weather-details.component.html',
-  styleUrls: ['./weather-details.component.scss']
+  templateUrl: './weather-details.component.html'
 })
-export class WeatherDetailsComponent implements OnInit {
+export class WeatherDetailsComponent {
   @Input() weatherDetails;
-  constructor() { }
 
-  ngOnInit() {
+  constructor(private weatherService: OpenWeatherMapService) {
   }
 
+  getIconUrl(iconId) {
+    return this.weatherService.getWeatherIconUrl(iconId);
+  }
 }
