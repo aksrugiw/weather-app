@@ -70,12 +70,7 @@
     <!-- Example row of columns -->
     <div class="row">
       <div class="col-md-3 text-center" *ngFor="let item of parsedWeatherData | slice:1">
-        <h2>{{(item[4].dt * 1000) | date: 'EEEE'}}</h2>
-        <h4>{{(item[4].dt * 1000) | date: 'dd-MM'}}</h4>
-        <!--<p>{{item[4].weather[0].description}}</p>-->
-        <p><img src="http://openweathermap.org/img/w/{{item[4].weather[0].icon}}.png" alt="">
-        </p>
-        <p>{{item[4].main.temp}} °C</p>
+        <app-weather-tile [singleWeatherDay]="item[4]"></app-weather-tile>
       </div>
 
     </div>

@@ -1,0 +1,6 @@
+<h2>{{(singleWeatherDay.dt * 1000) | date: 'EEEE'}}</h2>
+<h4>{{(singleWeatherDay.dt * 1000) | date: 'dd-MM'}}</h4>
+<p>{{singleWeatherDay.weather[0].description}}</p>
+<p><img src="http://openweathermap.org/img/w/{{singleWeatherDay.weather[0].icon}}.png" alt="">
+</p>
+<p>{{singleWeatherDay.main.temp}} °C</p>
