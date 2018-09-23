@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import {OpenweathermapService} from './openweathermap.service';
 import {HttpClientModule} from '@angular/common/http';
 import { WeatherTileComponent } from './weather-tile/weather-tile.component';
+import { WeatherDetailsComponent } from './weather-details/weather-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherTileComponent
+    WeatherTileComponent,
+    WeatherDetailsComponent
   ],
   imports: [
     BrowserModule,
