@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 const BASE_URL = 'http://api.openweathermap.org/data/2.5/forecast';
-const API_KEY = '26ed0f55a7aa9d8f8812479cf50eb221';
+const API_KEY = '26ed0f55a7aa9d8f8812479cf50eb221xxxx';
 
 @Injectable({
   providedIn: 'root'

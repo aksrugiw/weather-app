@@ -9,6 +9,7 @@ import { WeatherTileComponent } from './weather-tile/weather-tile.component';
 import { WeatherDetailsComponent } from './weather-details/weather-details.component';
 import { CurrentWeatherComponent } from './current-weather/current-weather.component';
 import { WeatherComponent } from './weather/weather.component';
+import { ErrorComponent } from './error/error.component';
 
 const appRoutes: Routes = [
   {
@@ -26,6 +27,10 @@ const appRoutes: Routes = [
     component: WeatherComponent,
     data: { city: 'New York' }
   },
+  {
+    path: 'error',
+    component: ErrorComponent
+  },
   { path: '',   redirectTo: '/warsaw', pathMatch: 'full' },
 ];
 
@@ -35,7 +40,8 @@ const appRoutes: Routes = [
     WeatherTileComponent,
     WeatherDetailsComponent,
     CurrentWeatherComponent,
-    WeatherComponent
+    WeatherComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

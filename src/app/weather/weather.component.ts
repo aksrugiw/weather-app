@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {OpenWeatherMapService} from '../open-weather-map.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 const DAY_NUMBER_FORECAST = 5;
 const AVERAGE_DAY_INDEX = 0;
@@ -19,11 +19,11 @@ export class WeatherComponent implements OnInit {
   hourlyWeatherPerDay = [];
   currentWeather;
 
-  constructor(private weatherService: OpenWeatherMapService, private route: ActivatedRoute) {
+  constructor(private weatherService: OpenWeatherMapService, private activatedRoute: ActivatedRoute, private router: Router ) {
   }
 
   ngOnInit() {
-    this.route.data.subscribe((param) => {
+    this.activatedRoute.data.subscribe((param) => {
       this.city = param.city;
     });
     this.weatherService.fetchWeatherForecast(this.city).subscribe((res) => {
@@ -31,7 +31,7 @@ export class WeatherComponent implements OnInit {
       this.hourlyWeatherPerDay = this.chunkWeatherData(this.weatherDataFromServer['cnt'] / DAY_NUMBER_FORECAST);
       this.setCurrentWeather();
       this.setAverageDayIndex();
-    });
+    },(error) => this.catchError(error));
   }
 
   chunkWeatherData(chunkSize) {
@@ -57,6 +57,10 @@ export class WeatherComponent implements OnInit {
 
   setAverageDayIndex() {
     this.averageDayIndex = AVERAGE_DAY_INDEX;
+  }
+
+  catchError(error) {
+    this.router.navigate(['/error']);
   }
 
 }
