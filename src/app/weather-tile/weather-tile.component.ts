@@ -8,5 +8,4 @@ import {Component, Input} from '@angular/core';
 export class WeatherTileComponent {
   @Input() singleWeatherDay;
   @Input() isActive = false;
-
 }
