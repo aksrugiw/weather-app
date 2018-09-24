@@ -11,7 +11,7 @@ import { CurrentWeatherComponent } from './current-weather/current-weather.compo
 import { WeatherComponent } from './weather/weather.component';
 import { ErrorComponent } from './error/error.component';
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   {
     path: 'warsaw',
     component: WeatherComponent,
@@ -31,7 +31,7 @@ const appRoutes: Routes = [
     path: 'error',
     component: ErrorComponent
   },
-  { path: '',   redirectTo: '/warsaw', pathMatch: 'full' },
+  { path: '', redirectTo: '/warsaw', pathMatch: 'full' },
 ];
 
 @NgModule({

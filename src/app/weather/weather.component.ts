@@ -60,7 +60,7 @@ export class WeatherComponent implements OnInit {
   }
 
   catchError(error) {
-    this.router.navigate(['/error']);
+    return this.router.navigate(['/error']);
   }
 
 }
